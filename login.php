@@ -8,9 +8,9 @@
 <body>
     <div class="login-container">
         <h1>Log In</h1>
-        <form action="login_process.php" method="post">
+        <form action="process/login_process.php" method="post">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="userid" name="userid" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
