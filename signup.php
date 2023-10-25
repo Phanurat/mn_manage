@@ -6,19 +6,9 @@
     <link rel="stylesheet" href="style/style_signup.css">
 </head>
 <body>
-    
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sign Up</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
     <div class="signup-container">
         <h1>Sign Up</h1>
-        <form action="signup_process.php" method="post">
+        <form action="process/signup_process.php" method="post">
             <label for="userid">UserID:</label>
             <input type="text" id="userid" name="userid" required>
 
