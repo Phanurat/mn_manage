@@ -72,6 +72,6 @@ $row = $result->fetch_assoc();
             <p>120,500 บาท</p> 
         </div>
     </div>
-    <a href="#" class="add-report-button">เพิ่มรายงาน</a>
+    <a href="add_transcation.php" class="add-report-button">เพิ่มรายงาน</a>
 </body>
 </html>
