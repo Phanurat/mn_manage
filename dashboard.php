@@ -17,33 +17,35 @@ if (!isset($_SESSION['user_id'])) {
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Welcome to Your Dashboard</h1>
-
-    <div class="button-container">
-        <div class="button">
-            <img src="icon1.png" alt="Icon 1">
-            <button>Edit</button>
-            <p>Button 1</p>
+    <h2>Card</h2>
+    <div class="card">
+        <div class="container">
+            <h4><b>User Name</b></h4> 
+            <p>รายการทั้งหมด</p> 
         </div>
-        <div class="button">
-            <img src="icon2.png" alt="Icon 2">
-            <button>Edit</button>
-            <p>Button 2</p>
+    </div>
+    <div class="card">
+        <div class="container">
+            <h4><b>John Doe</b></h4> 
+            <p>Architect & Engineer</p> 
         </div>
-        <div class="button">
-            <img src="icon3.png" alt="Icon 3">
-            <button>Edit</button>
-            <p>Button 3</p>
+    </div>
+    <div class="card">
+        <div class="container">
+            <h4><b>John Doe</b></h4> 
+            <p>Architect & Engineer</p> 
         </div>
-        <div class="button">
-            <img src="icon4.png" alt="Icon 4">
-            <button>Edit</button>
-            <p>Button 4</p>
+    </div>
+    <div class="card">
+        <div class="container">
+            <h4><b>John Doe</b></h4> 
+            <p>Architect & Engineer</p> 
         </div>
-        <div class="button">
-            <img src="icon5.png" alt="Icon 5">
-            <button>Edit</button>
-            <p>Button 5</p>
+    </div>
+    <div class="card">
+        <div class="container">
+            <h4><b>John Doe</b></h4> 
+            <p>Architect & Engineer</p> 
         </div>
     </div>
 </body>
