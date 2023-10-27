@@ -1,5 +1,6 @@
 <?php
 include "process/connect.php";
+
 session_start();
 if (!isset($_SESSION['user_id'])) {
     // ถ้าผู้ใช้ยังไม่ล็อกอิน ให้เปลี่ยนเส้นทางไปยังหน้า Login หรือทำสิ่งที่คุณต้องการ
@@ -44,8 +45,7 @@ $row = $result->fetch_assoc();
     </div>
     <div class="card">
         <div class="container">
-            <h4><b>เงินสด</b></h4> 
-            <p>20,000 บาท</p> 
+            <h4><b>เงินสด</b></h4>
         </div>
     </div>
     <div class="card">
@@ -69,7 +69,20 @@ $row = $result->fetch_assoc();
     <div class="card">
         <div class="container">
             <h4><b>คงเหลือ</b></h4> 
-            <p>120,500 บาท</p> 
+            <p><?php
+                $user_id = $_SESSION['user_id'];
+                $sql = "SELECT SUM(money) AS total_income FROM transcation WHERE type = 'income' AND user_id = SHA2('$user_id', 256)";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $total_income = number_format($row["total_income"]); // จัดรูปตัวเลข
+                        echo "จำนวน: " . $total_income;
+                    }
+                } else {
+                    echo "ไม่พบข้อมูลรายได้ของ 'Phanurat'";
+                }                
+            ?></p> 
         </div>
     </div>
     <a href="add_transcation.php" class="add-report-button">เพิ่มรายงาน</a>

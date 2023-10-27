@@ -45,7 +45,7 @@ $row = $result->fetch_assoc();
             <input type="text" id="list_name" name="list_name" required>
 
             <label for="money">จำนวนเงิน</label>
-            <input type="number" id="money" name="money" required min="0" max="10000">
+            <input type="number" id="money" name="money" required min="0" max="10000000">
 
             <label for="country">ประเภท</label>
             <select id="type" name="type" required>
