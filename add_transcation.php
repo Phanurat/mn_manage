@@ -22,6 +22,7 @@ $row = $result->fetch_assoc();
     <link rel="stylesheet" href="style/style_button.css">
     <link rel="stylesheet" href="style/style_menubar.css">
     <link rel="stylesheet" href="style/style_transcation.css">
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
 <body>
     <title>เพิ่มรายงาน</title>
 </head>

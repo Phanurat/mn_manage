@@ -9,8 +9,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
+  //header("Location: ../login.php");
 }
-
+  //header("Location: ../login.php");
 // ปิดการเชื่อมต่อเมื่อเสร็จสิ้น
 //mysqli_close($conn);
 ?>
