@@ -37,8 +37,9 @@ $row = $result->fetch_assoc();
     </ul>
     <div>
         <form action="process/transcation_process.php" method="POST">
-            <input type="hidden" name="user_id" value="<?php $row['user_id']; ?>">
-            <input type="hidden" name="user_name" value="<?php $row['user_name'];?>">
+            <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
+            <input type="hidden" name="user_name" value="<?php echo $row['user_name']; ?>">
+
 
             <label for="list_name">ชื่อรายการ</label>
             <input type="text" id="list_name" name="list_name" required>
