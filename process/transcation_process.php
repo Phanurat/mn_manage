@@ -21,7 +21,7 @@ if (isset($_POST['user_id']) && isset($_POST['user_name'])) {
 
 
     // รับวันที่และเวลาปัจจุบัน
-    date_default_timezone_set('Asia/Bangkok');
+    date_default_timezone_set('Asia/Bangkok');  
     $current_datetime = date('Y-m-d-H-i-s');
 
     // ระบุไฟล์ที่คุณต้องการบันทึก JSON string
