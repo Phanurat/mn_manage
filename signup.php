@@ -10,7 +10,7 @@
         <h1>Sign Up</h1>
         <form action="process/signup_process.php" method="post">
             <label for="userid">UserID:</label>
-            <input type="text" id="userid" name="userid" required>
+            <input type="text" id="userid" name="userid" pattern="[a-z]+" title="กรุณากรอกตัวอักษรตัวเล็กเท่านั้น" required>
 
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

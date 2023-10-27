@@ -17,7 +17,7 @@
         <h1>Log In</h1>
         <form action="process/login_process.php" method="post">
             <label for="username">Username:</label>
-            <input type="text" id="userid" name="userid" required>
+            <input type="text" id="userid" name="userid" pattern="[a-z]+" title="กรุณากรอกตัวอักษรตัวเล็กเท่านั้น" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
