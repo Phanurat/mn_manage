@@ -67,7 +67,7 @@ $row = $result->fetch_assoc();
     <div class="card">
         <div class="container">
             <h4><b>บัญชีธนาคาร</b></h4> 
-            <p>100,000 บาท</p> 
+            <p>0</p> 
         </div>
     </div>
     <div class="card">
@@ -101,6 +101,6 @@ $row = $result->fetch_assoc();
             ?></p> 
         </div>
     </div>
-    <a href="add_transcation.php" class="add-report-button">เพิ่มรายงาน</a>
+    <a href="add_transcation.php" class="add-report-button">เพิ่มรายการ</a>
 </body>
 </html>
