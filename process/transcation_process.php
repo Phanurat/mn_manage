@@ -19,6 +19,8 @@ if (isset($_POST['user_id']) && isset($_POST['user_name'])) {
     
     if ($conn->query($sql) === TRUE) {
         echo "บันทึกข้อมูลสำเร็จ";
+        header("Location: ../dashboard.php");
+        exit;
     } else {
         echo "การบันทึกข้อมูลล้มเหลว: " . $conn->error;
     }

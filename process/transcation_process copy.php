@@ -31,6 +31,9 @@ if (isset($_POST['user_id']) && isset($_POST['user_name'])) {
     file_put_contents($filename, $json_data);
     
     echo "ข้อมูลถูกบันทึกเป็น JSON ในไฟล์ $filename";
+
+    header("Location: ../dashboard.php");
+    exit;
 } else {
     // แสดงข้อความข้อผิดพลาดหรือทำอะไรที่คุณต้องการเมื่อข้อมูลไม่ถูกส่งมาในฟอรม
     echo "ข้อมูลไม่ถูกส่งมาในฟอร์ม";
