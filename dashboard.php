@@ -12,7 +12,6 @@ $sql = "SELECT user_id, user_name FROM users WHERE user_id = '" . $_SESSION['use
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
-
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +40,16 @@ $row = $result->fetch_assoc();
         <div class="container">
             <h4><b><?php echo "User ID: " . $row["user_id"];?></b></h4>
             <h4><b><?php echo "Name: " . $row["user_name"];?></b></h4> 
-            <p>รายการทั้งหมด</p> 
+            <p>รายการทั้งหมด  <?php
+                include "process/api_count_transcation.php";
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $listTranscation = $row['List Transcation'];
+                    echo "$listTranscation ครั้ง";
+                } else {
+                    echo "0";
+                }
+            ?></p> 
         </div>
     </div>
     <div class="card">
