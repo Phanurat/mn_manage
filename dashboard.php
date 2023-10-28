@@ -24,6 +24,7 @@ $row = $result->fetch_assoc();
     <link rel="stylesheet" href="style/style_dashboard.css">
     <link rel="stylesheet" href="style/style_button.css">
     <link rel="stylesheet" href="style/style_menubar.css">
+
 <body>
     <title>Dashboard</title>
 </head>
@@ -49,7 +50,7 @@ $row = $result->fetch_assoc();
             <p>
             <?php
                 $user_id = $_SESSION['user_id'];
-                $sql = "SELECT `transcation_id`, `wallet` FROM `transcation` WHERE user_id = SHA2('phanurat', 256) ORDER BY `transcation_id` DESC LIMIT 1;";
+                $sql = "SELECT `transcation_id`, `wallet` FROM `transcation` WHERE user_id = SHA2('$user_id', 256) ORDER BY `transcation_id` DESC LIMIT 1;";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -69,19 +70,25 @@ $row = $result->fetch_assoc();
             <h4><b>บัญชีธนาคาร</b></h4> 
             <p>0</p> 
         </div>
+        <button class="circle-button">+</button>
     </div>
+
     <div class="card">
         <div class="container">
             <h4><b>ค้างรับ</b></h4> 
             <p>2,000 บาท</p> 
         </div>
+        <button class="circle-button">+</button>
     </div>
+
     <div class="card">
         <div class="container">
             <h4><b>ค้างจ่าย</b></h4> 
             <p>1,500 บาท</p> 
         </div>
+        <button class="circle-button">+</button>
     </div>
+
     <div class="card">
         <div class="container">
             <h4><b>คงเหลือ</b></h4> 
