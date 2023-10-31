@@ -58,9 +58,9 @@ $row = $result->fetch_assoc();
             <p>
             <?php
                 $user_id = $_SESSION['user_id'];
-                $sql = "SELECT `transcation_id`, `wallet` FROM `transcation` WHERE user_id = SHA2('$user_id', 256) ORDER BY `transcation_id` DESC LIMIT 1;";
+                $sql = "SELECT `transcation_id`, `wallet` FROM `transcation` WHERE user_id = SHA2('$user_id', 256) AND `wallet` IS NOT NULL ORDER BY `transcation_id` DESC LIMIT 1;";
                 $result = $conn->query($sql);
-
+                
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $wallet = $row["wallet"]; // ดึงค่า "wallet" จากฐานข้อมูล
@@ -68,7 +68,7 @@ $row = $result->fetch_assoc();
                     }
                 } else {
                     echo "ไม่พบข้อมูลรายได้ของ $user_id";
-                }
+                }                
                 ?>
             </p>
         </div>
