@@ -72,6 +72,7 @@ $row = $result->fetch_assoc();
                 ?>
             </p>
         </div>
+        <button class="circle-button">+</button>
     </div>
     <div class="card">
         <div class="container">
