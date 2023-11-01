@@ -102,17 +102,22 @@ $row = $result->fetch_assoc();
             <h4><b>คงเหลือ</b></h4> 
             <p><?php
                 $user_id = $_SESSION['user_id'];
-                $sql = "SELECT SUM(money) AS total_income FROM transcation WHERE type = 'income' AND user_id = SHA2('$user_id', 256)";
+                $sql = "SELECT SUM(CASE WHEN type = 'income' THEN money ELSE 0 END) AS total_income,
+                               SUM(CASE WHEN type = 'expense' THEN money ELSE 0 END) AS total_expense
+                        FROM transcation
+                        WHERE user_id = SHA2('$user_id', 256)";
                 $result = $conn->query($sql);
                 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $total_income = number_format($row["total_income"]); // จัดรูปตัวเลข
-                        echo "จำนวน: " . $total_income;
+                        $total_income = $row["total_income"];
+                        $total_expense = $row["total_expense"];
+                        $total_net_income = $total_income - $total_expense;
+                        echo "รายได้รวม: " . number_format($total_net_income);
                     }
                 } else {
-                    echo "ไม่พบข้อมูลรายได้ของ 'Phanurat'". $row["user_name"];;
-                }                
+                    echo "ไม่พบข้อมูลรายได้ของ '$user_id'";
+                }              
             ?></p> 
         </div>
     </div>
