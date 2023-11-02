@@ -72,14 +72,14 @@ $row = $result->fetch_assoc();
                 ?>
             </p>
         </div>
-        <button class="circle-button">+</button>
+        <a class="circle-button" href="edit_fiat.php" style="text-decoration: none">+</a>
     </div>
     <div class="card">
         <div class="container">
             <h4><b>บัญชีธนาคาร</b></h4> 
             <p>0</p> 
         </div>
-        <button class="circle-button">+</button>
+        <a class="circle-button" href="#edit_bank.php" style="text-decoration: none">+</a>
     </div>
 
     <div class="card">
@@ -87,7 +87,7 @@ $row = $result->fetch_assoc();
             <h4><b>ค้างรับ</b></h4> 
             <p>2,000 บาท</p> 
         </div>
-        <button class="circle-button">+</button>
+        <a class="circle-button" href="#edit_notget.php" style="text-decoration: none">+</a>
     </div>
 
     <div class="card">
@@ -95,7 +95,7 @@ $row = $result->fetch_assoc();
             <h4><b>ค้างจ่าย</b></h4> 
             <p>1,500 บาท</p> 
         </div>
-        <button class="circle-button">+</button>
+        <a class="circle-button" href="#edit_notreturn.php" style="text-decoration: none">+</a>
     </div>
 
     <div class="card">
