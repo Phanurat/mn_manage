@@ -77,7 +77,23 @@ $row = $result->fetch_assoc();
     <div class="card">
         <div class="container">
             <h4><b>บัญชีธนาคาร</b></h4> 
-            <p>0</p> 
+            <p>
+                <?php
+                    $sql = "SELECT user_id, user_name FROM users WHERE user_id = '" . $_SESSION['user_id'] . "'";
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    
+                    $sql = "SELECT SUM(wallet_bank) AS 'TOTAL BATH' FROM bank WHERE user_id = '" . $_SESSION['user_id'] . "'";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        $bankData = $result->fetch_assoc();
+                        $total_bath = $bankData["TOTAL BATH"];
+                    } else {
+                        $total_bath = 0;
+                    }
+                    echo "จำนวน: " . number_format($total_bath);
+                ?>
+            </p> 
         </div>
         <a class="circle-button" href="edit_bank.php" style="text-decoration: none">+</a>
     </div>

@@ -59,7 +59,7 @@ if ($result->num_rows > 0) {
     </div>    
     <?php
     $user_id = $_SESSION["user_id"];
-    $sql = "SELECT `id_bank`, `name_bank`, `wallet_bank` FROM `bank` WHERE user_id = '$user_id'";
+    $sql = "SELECT `id_bank`, `name_bank`, `wallet_bank` FROM `bank` WHERE user_id = '$user_id' ORDER BY `wallet_bank` DESC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
