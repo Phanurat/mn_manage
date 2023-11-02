@@ -25,12 +25,12 @@ $row = $result->fetch_assoc();
     <link rel="stylesheet" href="style/style_menubar.css">
 
 <body>
-    <title>Dashboard</title>
+    <title>Bank</title>
 </head>
 <body>
     <ul>
         <li class="dropdown">
-            <a href="#" class="dropbtn">Menu</a>
+            <a href="dashboard.php" class="dropbtn"><</a>
         </li>
         <li class="logout">
             <a href="logout.php" class="logout">Logout</a>
@@ -40,46 +40,27 @@ $row = $result->fetch_assoc();
         <div class="container">
             <h4><b><?php echo "User ID: " . $row["user_id"];?></b></h4>
             <h4><b><?php echo "Name: " . $row["user_name"];?></b></h4> 
-            <p>รายการทั้งหมด  <?php
-                include "process/api_count_transcation.php";
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    $listTranscation = $row['List Transcation'];
-                    echo "$listTranscation ครั้ง";
-                } else {
-                    echo "0";
-                }
-            ?></p> 
+            <p>ธนาคารทั้งหมด</p> 
         </div>
+        <a href="add_bank.php" class="add-report-button">เพิ่มธนาคาร</a>
     </div>
     <div class="card">
         <div class="container">
-            <h4><b>เงินสด</b></h4>
+            <h4><b>SCB ไทยพาณิชย์</b></h4>
             <p>
             <?php
-                $user_id = $_SESSION['user_id'];
-                $sql = "SELECT `transcation_id`, `wallet` FROM `transcation` WHERE user_id = SHA2('$user_id', 256) AND `wallet` IS NOT NULL ORDER BY `transcation_id` DESC LIMIT 1;";
-                $result = $conn->query($sql);
-                
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $wallet = $row["wallet"]; // ดึงค่า "wallet" จากฐานข้อมูล
-                        echo "จำนวน: " . number_format($wallet); // จัดรูปตัวเลข
-                    }
-                } else {
-                    echo "ไม่พบข้อมูลรายได้ของ $user_id";
-                }                
+                 echo "100";          
                 ?>
             </p>
         </div>
-        <a class="circle-button" href="edit_fiat.php" style="text-decoration: none">+</a>
+        <a class="circle-button" href="#" style="text-decoration: none">+</a>
     </div>
     <div class="card">
         <div class="container">
             <h4><b>บัญชีธนาคาร</b></h4> 
             <p>0</p> 
         </div>
-        <a class="circle-button" href="edit_bank.php" style="text-decoration: none">+</a>
+        <a class="circle-button" href="#" style="text-decoration: none">+</a>
     </div>
 
     <div class="card">
@@ -87,7 +68,7 @@ $row = $result->fetch_assoc();
             <h4><b>ค้างรับ</b></h4> 
             <p>2,000 บาท</p> 
         </div>
-        <a class="circle-button" href="#edit_notget.php" style="text-decoration: none">+</a>
+        <a class="circle-button" href="#" style="text-decoration: none">+</a>
     </div>
 
     <div class="card">
@@ -95,12 +76,12 @@ $row = $result->fetch_assoc();
             <h4><b>ค้างจ่าย</b></h4> 
             <p>1,500 บาท</p> 
         </div>
-        <a class="circle-button" href="#edit_notreturn.php" style="text-decoration: none">+</a>
+        <a class="circle-button" href="#" style="text-decoration: none">+</a>
     </div>
 
     <div class="card">
         <div class="container">
-            <h4><b>คงเหลือ</b></h4> 
+            <h4><b>รวมทั้งหมด</b></h4> 
             <p><?php
                 $user_id = $_SESSION['user_id'];
                 $sql = "SELECT SUM(CASE WHEN type = 'income' THEN money ELSE 0 END) AS total_income,
@@ -114,7 +95,7 @@ $row = $result->fetch_assoc();
                         $total_income = $row["total_income"];
                         $total_expense = $row["total_expense"];
                         $total_net_income = $total_income - $total_expense;
-                        echo "รายได้รวม: " . number_format($total_net_income);
+                        echo "ธนาคารรวม: " . number_format($total_net_income);
                     }
                 } else {
                     echo "ไม่พบข้อมูลรายได้ของ '$user_id'";
@@ -122,6 +103,5 @@ $row = $result->fetch_assoc();
             ?></p> 
         </div>
     </div>
-    <a href="add_transcation.php" class="add-report-button">เพิ่มรายการ</a>
 </body>
 </html>
