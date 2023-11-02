@@ -12,6 +12,17 @@ $sql = "SELECT user_id, user_name FROM users WHERE user_id = '" . $_SESSION['use
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
+$sql = "SELECT COUNT(name_bank) AS 'TOTAL BANK', SUM(wallet_bank) AS 'TOTAL BATH' FROM bank WHERE user_id = '" . $_SESSION['user_id'] . "'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $bankData = $result->fetch_assoc();
+    $total_bank = $bankData["TOTAL BANK"];
+    $total_bath = $bankData["TOTAL BATH"];
+} else {
+    $total_bank = 0;
+    $total_bath = 0;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +34,6 @@ $row = $result->fetch_assoc();
     <link rel="stylesheet" href="style/style_dashboard.css">
     <link rel="stylesheet" href="style/style_button.css">
     <link rel="stylesheet" href="style/style_menubar.css">
-
-<body>
     <title>Bank</title>
 </head>
 <body>
@@ -42,66 +51,35 @@ $row = $result->fetch_assoc();
             <h4><b><?php echo "Name: " . $row["user_name"];?></b></h4> 
             <p>
                 <?php
-                    $user_id = $_SESSION["user_id"];
-                    $sql = "SELECT COUNT(name_bank) AS 'TOTAL BANK', SUM(wallet_bank) AS 'TOTAL BATH' FROM bank WHERE user_id = '$user_id';";
-
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $total_bank = $row["TOTAL BANK"];
-                            $total_bath = $row["TOTAL BATH"];
-                            echo "ธนาคารรวม: " . number_format($total_bank). "<br>";
-                            echo "เงินทั้งหมด: " . number_format($total_bath); 
-                        }
-                    } else {
-                        echo "ไม่พบข้อมูลรายได้ของ '$user_id'";
-                    }  
+                    echo "ธนาคารรวม: " . number_format($total_bank) . "<br>";
+                    echo "เงินทั้งหมด: " . number_format($total_bath);
                 ?>
             </p> 
         </div>
-        
     </div>    
-    <div class="card">
-        <div class="container">
-            <h4><b>SCB ไทยพาณิชย์</b></h4>
-            <p>
-            <?php
-                 echo "100";          
-                ?>
-            </p>
-        </div>
-        <a class="circle-button" href="#" style="text-decoration: none">+</a>
-    </div>
-    <div class="card">
-        <div class="container">
-            <h4><b>บัญชีธนาคาร</b></h4> 
-            <p>0</p> 
-        </div>
-        <a class="circle-button" href="#" style="text-decoration: none">+</a>
-    </div>
+    <?php
+    $user_id = $_SESSION["user_id"];
+    $sql = "SELECT `id_bank`, `name_bank`, `wallet_bank` FROM `bank` WHERE user_id = '$user_id'";
+    $result = $conn->query($sql);
 
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $id_bank = $row["id_bank"];
+            $name_bank = $row["name_bank"];
+            $wallet_bank = $row["wallet_bank"];
+    ?>
     <div class="card">
         <div class="container">
-            <h4><b>ค้างรับ</b></h4> 
-            <p>2,000 บาท</p> 
+            <h4><b><?php echo $name_bank; ?></b></h4>
+            <p><?php echo number_format($wallet_bank); ?></p>
         </div>
-        <a class="circle-button" href="#" style="text-decoration: none">+</a>
+        <a class="circle-button" href="manage_bank.php?id=<?php echo $id_bank; ?>" style="text-decoration: none">+</a>
     </div>
-
-    <div class="card">
-        <div class="container">
-            <h4><b>ค้างจ่าย</b></h4> 
-            <p>1,500 บาท</p> 
-        </div>
-        <a class="circle-button" href="#" style="text-decoration: none">+</a>
-    </div>
-
-    <div class="card">
-        <div class="container">
-            <h4><b>รวมทั้งหมด</b></h4> 
-            <p></p> 
-        </div>
-    </div>
+    <?php
+        }
+    } else {
+        echo "ไม่พบข้อมูลธนาคารของ '$user_id'";
+    }
+    ?>
 </body>
 </html>
