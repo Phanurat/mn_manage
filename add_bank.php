@@ -50,7 +50,7 @@
             <input type="hidden" name="user_id" value= <?php $row["user_id"];?>>
 
             <label for="wallet_bank">จำนวนเงินเริ่มต้น:</label>
-            <input type="text" name="wallet_bank" placeholder="จำนวนเงิน">
+            <input type="number" name="wallet_bank" placeholder="จำนวนเงิน">
             <button type="submit">บันทึก</button>
         </form>
     </div>

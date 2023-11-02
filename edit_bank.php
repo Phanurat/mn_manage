@@ -33,17 +33,35 @@ $row = $result->fetch_assoc();
             <a href="dashboard.php" class="dropbtn"><</a>
         </li>
         <li class="logout">
-            <a href="logout.php" class="logout">Logout</a>
+            <a href="add_bank.php" class="logout">เพิ่มธนาคาร</a>
         </li>
     </ul>
     <div class="card">
         <div class="container">
             <h4><b><?php echo "User ID: " . $row["user_id"];?></b></h4>
             <h4><b><?php echo "Name: " . $row["user_name"];?></b></h4> 
-            <p>ธนาคารทั้งหมด</p> 
+            <p>
+                <?php
+                    $user_id = $_SESSION["user_id"];
+                    $sql = "SELECT COUNT(name_bank) AS 'TOTAL BANK', SUM(wallet_bank) AS 'TOTAL BATH' FROM bank WHERE user_id = '$user_id';";
+
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $total_bank = $row["TOTAL BANK"];
+                            $total_bath = $row["TOTAL BATH"];
+                            echo "ธนาคารรวม: " . number_format($total_bank). "<br>";
+                            echo "เงินทั้งหมด: " . number_format($total_bath); 
+                        }
+                    } else {
+                        echo "ไม่พบข้อมูลรายได้ของ '$user_id'";
+                    }  
+                ?>
+            </p> 
         </div>
-        <a href="add_bank.php" class="add-report-button">เพิ่มธนาคาร</a>
-    </div>
+        
+    </div>    
     <div class="card">
         <div class="container">
             <h4><b>SCB ไทยพาณิชย์</b></h4>
@@ -82,25 +100,7 @@ $row = $result->fetch_assoc();
     <div class="card">
         <div class="container">
             <h4><b>รวมทั้งหมด</b></h4> 
-            <p><?php
-                $user_id = $_SESSION['user_id'];
-                $sql = "SELECT SUM(CASE WHEN type = 'income' THEN money ELSE 0 END) AS total_income,
-                               SUM(CASE WHEN type = 'expense' THEN money ELSE 0 END) AS total_expense
-                        FROM transcation
-                        WHERE user_id = SHA2('$user_id', 256)";
-                $result = $conn->query($sql);
-                
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $total_income = $row["total_income"];
-                        $total_expense = $row["total_expense"];
-                        $total_net_income = $total_income - $total_expense;
-                        echo "ธนาคารรวม: " . number_format($total_net_income);
-                    }
-                } else {
-                    echo "ไม่พบข้อมูลรายได้ของ '$user_id'";
-                }              
-            ?></p> 
+            <p></p> 
         </div>
     </div>
 </body>
