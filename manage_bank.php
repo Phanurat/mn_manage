@@ -71,10 +71,18 @@ session_start();
             <input type="number" name="wallet_bank" placeholder="จำนวนเงิน">
             <button type="submit">บันทึก</button>
         </form>
+        <div>
+            <form action="process/delete_bank.php" method="post">    
+                <input type="hidden" name="id_bank" value="<?php echo $id_bank; ?>">
+                <button type="submit" style="color: white; background-color: red;">ลบ</button>        
+            </form>    
+        </div>    
     </div>
 </body>
-</html><?php
-}else{
-    echo "ไม่พบข้อมูลธนาคารของ '$user_id'";
-}
+</html>
+<?php
+    }else{
+        echo "ไม่พบข้อมูลธนาคารของคุณ '$user_id'";         
+        echo "หรือโปรดเพิ่มบัญชีธนาคารของคุณ";
+    }        
 ?>
