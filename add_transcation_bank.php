@@ -29,7 +29,7 @@ $row = $result->fetch_assoc();
 <body>
     <ul>
         <li class="dropdown">
-            <a href="dashboard.php" class="dropbtn"><</a>
+            <a href="add_transcation.php" class="dropbtn"><</a>
         </li>
         <li class="logout">
             <a href="logout.php" class="logout">Logout</a>
@@ -50,8 +50,7 @@ $row = $result->fetch_assoc();
             <select id="type" name="type" class ="custome-select" style="width:120px;" required>
                 <option value="income">รายได้</option>
                 <option value="expense">รายจ่าย</option>
-            </select>
-            <a href="add_transcation_bank.php"><button type="button">เพิ่มรายการ ธนาคาร</button></a>                     
+            </select>                    
             <input type="submit" value="บันทึกรายการ">
         </form>
     </div>    
